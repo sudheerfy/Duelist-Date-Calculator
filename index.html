@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Duelist Date Calculator</title>
+  <meta name="description" content="Useful tool to prepare duelist by calculating 42 days, 9 months, 16 months etc. from Ci-VHSND date to identify eligible children." />
+  <meta name="keywords" content="Duelist Date Calculator, Ci-VHSND, vaccination date calculator, child eligibility calculator, 42 days before, 9 months before, 16 months before, immunization tracking tool, टीकाकरण ड्यूलिस्ट, स्वास्थ्य कार्यकर्ता टूल, बच्चे की पात्रता, ड्यूलिस्ट बनाने का टूल, हिंदी टीकाकरण कैलकुलेटर, eligible child list, VHSND tool" />
+  <meta name="author" content="Sudheer Singh" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -157,14 +160,14 @@
     .button-group {
       display: flex;
       gap: 10px;
-      margin-top: 15px;
+      margin-top: 5px;
     }
 
     /* Calculate button zyada width le */
     .calculate-btn {
       flex: 2;
       margin-top: 0;
-      padding: 12px;
+      padding: 10px;
       background: #007bff;
       color: white;
       font-family: "Noto Sans", sans-serif;
@@ -193,7 +196,7 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
-      padding: 12px;
+      padding: 10px;
     }
 
     .reset-btn:hover {
@@ -208,8 +211,8 @@
     }
 
     #result {
-      margin-top: 25px;
-      font-size: 15px;
+      margin-top: 20px;
+      font-size: 16px;
       line-height: 1.6;
       color: #333;
       background: #ffffff;
@@ -217,36 +220,37 @@
       border-radius: 6px;
     }
 
-    .result-section {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+    .result-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15.5px;
+      background: #f9f9f9;
+      overflow: hidden;
+      margin-top: 10px;
     }
 
-    .result-item {
-      background: #f0f8ff;
-      border-left: 5px solid #007bff;
-      padding: 10px 12px;
-      border-radius: 5px;
-      font-size: 15px;
-      line-height: 1.5;
-      display: flex;
-      align-items: start;
-      gap: 8px;
+    .result-table th,
+    .result-table td {
+      padding: 5px 10px;
+      border: 1px solid #ddd;
+      text-align: left;
     }
 
-    .result-item span.icon {
-      color: #007bff;
-      font-weight: bold;
-      font-size: 18px;
-      line-height: 1;
+    .result-table tbody tr:nth-child(odd) {
+      background-color: #f2f2f2;
     }
+
+    .result-table tbody td:nth-child(even) {
+      font-weight: 600;
+    }
+
     .result-header {
-      font-size: 16px;
+      font-size: 16.5px;
       font-weight: 600;
       color: #2c3e50;
       margin-bottom: 8px;
     }
+
 
   </style>
 </head>
@@ -600,33 +604,21 @@
 
     const weekdayInMonth = utils.getWeekdayPositionInMonthHindi(inputDate);  // e.g. 2nd Thursday
 
-    // const results = [
-    //   `✔️ 42 दिन पहले: ${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 42))}`,
-    //   `✔️ 270 दिन पहले (लगभग 9 माह): ${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 270))}`,
-    //   `✔️ 480 दिन पहले (लगभग 16 माह): ${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 480))}`,
-    //   `✔️ 5 वर्ष पहले: ${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 5))}`,
-    //   `✔️ 10 वर्ष पहले: ${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 10))}`,
-    //   `✔️ 16 वर्ष पहले: ${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 16))}`
-    // ];
-
     resultBox.html(`
-      <div class="result-header">🗓 <strong>टीकाकरण तिथि :</strong> ${utils.formatDateHindi(inputDate)}</div>
-      <div class="result-header">📌 <strong>दिन :</strong> ${weekdayInMonth}</div>
-      <div class="result-section">
-        <div class="result-item"><span class="icon">🍼</span>42 दिन पहले: ${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 42))}</div>
-        <div class="result-item"><span class="icon">🥣</span>270 दिन पहले (लगभग 9 माह): ${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 270))}</div>
-        <div class="result-item"><span class="icon">🍛</span>480 दिन पहले (लगभग 16 माह): ${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 480))}</div>
-        <div class="result-item"><span class="icon">👦</span>5 वर्ष पहले: ${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 5))}</div>
-        <div class="result-item"><span class="icon">🙋</span>10 वर्ष पहले: ${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 10))}</div>
-        <div class="result-item"><span class="icon">🧖‍♀️</span>16 वर्ष पहले: ${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 16))}</div>
-      </div>
+      <div class="result-header"><strong>🗓 टीकाकरण तिथि:</strong> ${utils.formatDateHindi(inputDate)}</div>
+      <div class="result-header"><strong>📌 दिन:</strong> ${weekdayInMonth}</div>
+      <table class="result-table">
+        <tbody>
+          <tr><td><span class="icon">🍼</span> 42 दिन पहले</td><td>${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 42))}</td></tr>
+          <tr><td><span class="icon">🥣</span> 270 दिन पहले (लगभग 9 माह)</td><td>${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 270))}</td></tr>
+          <tr><td><span class="icon">🍛</span> 480 दिन पहले (लगभग 16 माह)</td><td>${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 480))}</td></tr>
+          <tr><td><span class="icon">👦</span> 5 वर्ष पहले</td><td>${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 5))}</td></tr>
+          <tr><td><span class="icon">🙋</span> 10 वर्ष पहले</td><td>${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 10))}</td></tr>
+          <tr><td><span class="icon">🧖‍♀️</span> 16 वर्ष पहले</td><td>${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 16))}</td></tr>
+        </tbody>
+      </table>
     `);
 
-    resultBox.html(`
-      <strong>टीकाकरण तिथि :</strong> ${utils.formatDateHindi(inputDate)}<br>
-      <strong>दिन :</strong> ${weekdayInMonth}<br><br>` +
-      results.join("<br>")
-    );
   }
 
 </script>
