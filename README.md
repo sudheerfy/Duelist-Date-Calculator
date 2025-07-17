@@ -40,7 +40,7 @@
 
 ## 🖼 Screenshot
 
-![App Screenshot](screenshot.png) 
+![screenshot](screenshot.png) 
 
 ## 🛠️ Technologies Used
 
