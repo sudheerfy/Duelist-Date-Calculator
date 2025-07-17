@@ -240,7 +240,9 @@
       background-color: #f2f2f2;
     }
 
-    .result-table tbody td:nth-child(even) {
+    .result-table tbody td:nth-child(2) {
+      white-space: nowrap;
+      width: 1%;
       font-weight: 600;
     }
 
@@ -250,8 +252,6 @@
       color: #2c3e50;
       margin-bottom: 8px;
     }
-
-
   </style>
 </head>
 <body>
@@ -609,7 +609,7 @@
       <div class="result-header"><strong>📌 दिन:</strong> ${weekdayInMonth}</div>
       <table class="result-table">
         <tbody>
-          <tr><td><span class="icon">🍼</span> 42 दिन पहले</td><td>${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 42))}</td></tr>
+          <tr><td><span class="icon">🍼</span> 42 दिन पहले (6 सप्ताह)</td><td>${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 42))}</td></tr>
           <tr><td><span class="icon">🥣</span> 270 दिन पहले (लगभग 9 माह)</td><td>${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 270))}</td></tr>
           <tr><td><span class="icon">🍛</span> 480 दिन पहले (लगभग 16 माह)</td><td>${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 480))}</td></tr>
           <tr><td><span class="icon">👦</span> 5 वर्ष पहले</td><td>${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 5))}</td></tr>
@@ -618,10 +618,7 @@
         </tbody>
       </table>
     `);
-
-  }
-
-</script>
-
+    }
+  </script>
 </body>
 </html>
