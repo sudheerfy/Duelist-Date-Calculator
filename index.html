@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Duelist Date Calculator</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <!-- jQuery + jQuery UI -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      font-family: "Noto Sans", sans-serif;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      padding-top: 10px;
+      background-color: #f5f5f5;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      padding: 15px;
+      margin: auto;
+    }
+
+    .card h2 {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      text-align: center;
+      font-family: "Noto Sans", sans-serif;
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .label-text {
+      font-size: 18px;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 10px;
+      text-align: center;
+      font-family: 'Noto Sans Devanagari', sans-serif;
+    }
+
+    .date-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr auto;
+      gap: 10px;
+      align-items: start;
+      text-align: center;
+    }
+
+    .date-grid .field {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .date-grid label {
+      font-family: "Noto Sans", sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .date-grid input[type="number"] {
+      padding: 8px;
+      font-size: 15px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    input[type="number"]:focus {
+      border-color: #1976d2;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+    }
+
+    input.error {
+      border-color: #e53935 !important;
+      animation: shake 0.3s ease-in-out;
+    }
+
+    input.error:focus {
+      box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.25);
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      20% { transform: translateX(-4px); }
+      40% { transform: translateX(4px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+      100% { transform: translateX(0); }
+    }
+
+    .no-arrows::-webkit-inner-spin-button,
+    .no-arrows::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .no-arrows {
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+
+    .helper {
+      font-size: 12px;
+      color: #777;
+      margin-top: 3px;
+    }
+
+    #datepicker {
+      display: none;
+    }
+
+    #calendarIcon {
+      align-self: center;
+      height: 38px;
+      width: 38px;
+      margin-top: 5px;
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    #calendarIcon img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .today-link {
+      color: #3366cc;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 15px 0;
+      display: inline-block;
+      text-align: center;  
+    }
+    
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    /* Calculate button zyada width le */
+    .calculate-btn {
+      flex: 2;
+      margin-top: 0;
+      padding: 12px;
+      background: #007bff;
+      color: white;
+      font-family: "Noto Sans", sans-serif;
+      font-size: 18px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .calculate-btn:hover {
+      background: #0056c7;
+    }
+
+    /* Reset button kam width le aur icon ke saath align ho */
+    .reset-btn {
+      flex: 1;
+      background: #888;
+      color: white;
+      font-family: "Noto Sans", sans-serif;
+      font-size: 18px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px;
+    }
+
+    .reset-btn:hover {
+      background: #666;
+    }
+
+    /* Icon style inside reset */
+    .reset-btn .icon {
+      width: 16px;
+      height: 16px;
+      filter: brightness(0) invert(1);
+    }
+
+    #result {
+      margin-top: 25px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #333;
+      background: #ffffff;
+      padding: 15px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h2>📆 Duelist Date Calculator</h2>
+  <p>टीकाकरण (Ci-VHSND) तिथि के अनुसार योग्य बच्चों की सूची (ड्यूलिस्ट) तैयार करने हेतु उनकी तिथि की गणना एवं पहचान करना</p>
+
+  <div class="label-text">नीचे अपने टीकाकरण की तिथि दर्ज करें।</div> 
+  <div class="date-grid">
+    <div class="field">
+      <label for="day">दिन</label>
+      <input class="no-arrows" type="number" inputmode="numeric" id="day" min="1" max="31">
+      <div class="helper">DD</div>
+    </div>
+    <div class="field">
+      <label for="month">माह</label>
+      <input class="no-arrows" type="number" inputmode="numeric" id="month" min="1" max="12">
+      <div class="helper">MM</div>
+    </div>
+    <div class="field">
+      <label for="year">साल</label>
+      <input class="no-arrows" type="number" inputmode="numeric" id="year" min="1900" max="2100">
+      <div class="helper">YYYY</div>
+    </div>
+    <input type="text" id="datepicker" readonly>
+    <button id="calendarIcon" title="कैलेण्डर खोलें" aria-label="Open calendar">
+      <img src="https://jqueryui.com/resources/demos/datepicker/images/calendar.gif" alt="Calendar">
+    </button>
+  </div>
+
+  <span class="today-link" onclick="setToday()">आज की तारीख़</span>
+  <div class="button-group">
+    <button class="calculate-btn" onclick="calculateDates()">गणना करें</button>
+    <button class="generate-btn reset-btn" onclick="resetFields()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+      </svg>
+      मिटाएँ
+    </button>
+  </div>
+
+  <div id="result" class="error-msg"></div>
+</div>
+
+<script>
+  let fieldErrors = {
+    day: "",
+    month: "",
+    year: ""
+  };
+
+  $(document).ready(function () {
+    $("#day").focus(); // Focus on page load
+
+    // Auto-trim and move focus
+    $("#day, #month, #year").on("input", function () {
+      let val = $(this).val();
+      let id = $(this).attr("id");
+
+      $(this).removeClass("error");
+      $("#result").text("");
+
+      if ((id === "day" || id === "month") && val.length > 2) {
+        $(this).val(val.slice(0, 2));
+      }
+      if (id === "year" && val.length > 4) {
+        $(this).val(val.slice(0, 4));
+      }
+    });
+
+    $("#day").on("input", function () {
+      if ($(this).val().length === 2) {
+        $("#month").focus();
+      }
+    });
+
+    $("#month").on("input", function () {
+      if ($(this).val().length === 2) {
+        $("#year").focus();
+      }
+    });
+
+    // 🔁 Reverse focus: If field is empty and backspace is pressed
+    $("#month, #year").on("keydown", function (e) {
+      if (e.key === "Backspace" && $(this).val().length === 0) {
+        if (this.id === "year") {
+          $("#month").focus();
+        } else if (this.id === "month") {
+          $("#day").focus();
+        }
+      }
+    });
+
+    $("#day, #month, #year").on("input", function () {
+      const id = $(this).attr("id");
+      const val = parseInt($(this).val());
+
+      if (id === "day" && val >= 1 && val <= 31) {
+        fieldErrors.day = "";
+      }
+      if (id === "month" && val >= 1 && val <= 12) {
+        fieldErrors.month = "";
+      }
+      if (id === "year" && val >= 1900 && val <= 2100) {
+        fieldErrors.year = "";
+      }
+
+      showErrors(); // ✅ Update result box
+    });
+
+    // Hindi config (manual)
+    $.datepicker.regional['hi'] = {
+      closeText: "बंद",
+      prevText: "पिछला",
+      nextText: "अगला",
+      currentText: "आज",
+      monthNames: ["जनवरी","फ़रवरी","मार्च","अप्रैल","मई","जून",
+      "जुलाई","अगस्त","सितम्बर","अक्टूबर","नवम्बर","दिसम्बर"],
+      monthNamesShort: ["जन", "फर", "मार्च", "अप्रै", "मई", "जून",
+      "जुल", "अग", "सित", "अक्ट", "नव", "दि"],
+      dayNames: ["रविवार","सोमवार","मंगलवार","बुधवार","गुरुवार","शुक्रवार","शनिवार"],
+      dayNamesShort: ["रवि", "सोम", "मंगल", "बुध", "गुरु", "शुक्र", "शनि"],
+      dayNamesMin: ["र","सो","मं","बु","गु","शु","श"],
+      weekHeader: "हफ्ता",
+      dateFormat: "dd/mm/yy",
+      firstDay: 1,
+      isRTL: false,
+      showMonthAfterYear: false,
+      yearSuffix: ""
+    };
+    $.datepicker.setDefaults($.datepicker.regional["hi"]);
+
+    $(function () {
+      $("#datepicker").datepicker({
+        dateFormat: "dd/mm/yy",
+        onSelect: function (dateText) {
+          const [day, month, year] = dateText.split('/');
+          $("#day").val(day.padStart(2, '0'));
+          $("#month").val(month.padStart(2, '0'));
+          $("#year").val(year);
+          $("#result").html("");
+        }
+      });
+    });
+
+    $("#calendarIcon").on("click", function () {
+      $("#datepicker").datepicker("show");
+    });
+
+    // Sync inputs with datepicker
+    $("#day, #month, #year").on("change", function () {
+      let d = parseInt($("#day").val());
+      let m = parseInt($("#month").val());
+      let y = parseInt($("#year").val());
+
+      if (!isNaN(d) && !isNaN(m) && !isNaN(y)) {
+        const error = highlightInvalidInputs(d, m, y);
+        if (!error) {
+          const date = new Date(y, m - 1, d);
+          const formatted = $.datepicker.formatDate("dd/mm/yy", date);
+          $("#datepicker").datepicker("setDate", formatted);
+        }
+      }
+    });
+
+    $("#day, #month").on("change", function () {
+      let val = $(this).val();
+      if (val !== "") {
+        val = parseInt(val).toString().padStart(2, '0');
+        $(this).val(val);
+      }
+    });
+
+    // ✅ Trigger calculation on Enter key
+    $("#day, #month, #year").on("keydown", function (e) {
+      if (e.key === "Enter" || e.keyCode === 13) {
+        e.preventDefault();
+        $(".calculate-btn").click();
+      }
+    });
+
+    // ✅ Limit Tab key focus only to #day, #month, #year
+    const focusableFields = ["#day", "#month", "#year"];
+
+    $(document).on("keydown", function (e) {
+      if (e.key === "Tab") {
+        const current = document.activeElement.id;
+        const currentIndex = focusableFields.indexOf("#" + current);
+
+        if (currentIndex !== -1) {
+          e.preventDefault(); // Stop normal Tab behavior
+          const nextIndex = e.shiftKey
+            ? (currentIndex - 1 + focusableFields.length) % focusableFields.length
+            : (currentIndex + 1) % focusableFields.length;
+          $(focusableFields[nextIndex]).focus();
+        }
+      }
+    });
+  });
+
+  function showErrors() {
+    const messages = Object.values(fieldErrors).filter(msg => msg !== "");
+    if (messages.length > 0) {
+      $("#result").html(messages.map(msg => `<div>• ${msg}</div>`).join(""));
+    } else {
+      $("#result").html("");
+    }
+  }
+
+  function highlightInvalidInputs(day, month, year) {
+    fieldErrors = { day: "", month: "", year: "" }; // reset errors
+    let firstInvalidField = null;
+
+    ["#day", "#month", "#year"].forEach(id => $(id).removeClass("error"));
+
+    if (isNaN(day) || day < 1 || day > 31) {
+      triggerShake("#day");
+      if (!firstInvalidField) firstInvalidField = "#day";
+      fieldErrors.day = "<b>दिन (Day) ➤ 1 से 31</b> के बीच होना चाहिए।";
+    }
+
+    if (isNaN(month) || month < 1 || month > 12) {
+      triggerShake("#month");
+      if (!firstInvalidField) firstInvalidField = "#month";
+      fieldErrors.month = "<b>महीना (Month) ➤ 1 से 12</b> के बीच होना चाहिए।";
+    }
+
+    if (isNaN(year) || year < 1900 || year > 2100) {
+      triggerShake("#year");
+      if (!firstInvalidField) firstInvalidField = "#year";
+      fieldErrors.year = "<b>साल (Year) ➤ 1900 से 2100</b> के बीच होना चाहिए।";
+    }
+
+    const date = new Date(year, month - 1, day);
+    const valid = date.getFullYear() === year &&
+                  date.getMonth() === month - 1 &&
+                  date.getDate() === day;
+
+    if (!Object.values(fieldErrors).some(e => e) && !valid) {
+      triggerShake("#day");
+      triggerShake("#month");
+      triggerShake("#year");
+      if (!firstInvalidField) firstInvalidField = "#day";
+      fieldErrors.day = "आपके द्वारा दर्ज की गई तिथि कैलेंडर के अनुसार मान्य नहीं है। कृपया सही दिन, महीना और साल दर्ज करें।";
+    }
+
+    showErrors();
+
+    if (firstInvalidField) {
+      $(firstInvalidField).focus();  // ✅ Set focus to first invalid field
+      return "Error";
+    }
+    return null;
+  }
+
+  function triggerShake(selector) {
+    const el = $(selector);
+    el.removeClass("error");
+    void el[0].offsetWidth;
+    el.addClass("error");
+  }
+
+  function setToday() {
+    const today = new Date();
+    $("#day").val(today.getDate().toString().padStart(2, '0'));
+    $("#month").val((today.getMonth() + 1).toString().padStart(2, '0'));
+    $("#year").val(today.getFullYear());
+    const formatted = $.datepicker.formatDate("dd/mm/yy", today);
+    $("#datepicker").datepicker("setDate", formatted);
+    $("#result").html("");
+  }
+
+  function resetFields() {
+    $("#day, #month, #year").val("");
+    $("#result").html("");
+    $("#day, #month, #year").removeClass("error");
+    $("#datepicker").datepicker("setDate", null);
+    fieldErrors = { day: "", month: "", year: "" };
+    $("#day").focus();
+  }
+
+  const hindiMonths = ["जनवरी", "फरवरी", "मार्च", "अप्रैल", "मई", "जून", "जुलाई", "अगस्त", "सितंबर", "अक्टूबर", "नवंबर", "दिसंबर"];
+  const weekdaysHindi = ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'];
+  const ordinalsHindi = ['पहला', 'दूसरा', 'तीसरा', 'चौथा', 'पाँचवाँ', 'छठा'];
+
+  const utils = {
+    subtractDaysFromDate(date, days) {
+      const newDate = new Date(date);
+      newDate.setDate(newDate.getDate() - days);
+      return newDate;
+    },
+
+    subtractYearsFromDate(date, years) {
+      const newDate = new Date(date);
+      newDate.setFullYear(newDate.getFullYear() - years);
+      return newDate;
+    },
+
+    formatDateEnglish(date) {
+      return date.toLocaleDateString('en-IN', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      });
+    },
+
+    formatDateHindi(date) {
+      const day = date.getDate();
+      const month = hindiMonths[date.getMonth()];
+      const year = date.getFullYear();
+      return `${day} ${month} ${year}`;
+    },
+
+    getWeekdayPositionInMonthHindi(date) {
+      const targetDay = date.getDay();
+      const year = date.getFullYear();
+      const month = date.getMonth();
+
+      let count = 0;
+
+      for (let day = 1; day <= date.getDate(); day++) {
+        const current = new Date(year, month, day);
+        if (current.getDay() === targetDay) {
+          count++;
+        }
+      }
+
+      const ordinal = ordinalsHindi[count - 1] || `${count}वाँ`;
+      const weekday = weekdaysHindi[targetDay];
+
+      return `महीने का ${ordinal} ${weekday}`;
+    }
+  };
+
+  function calculateDates() {
+    const d = parseInt($("#day").val());
+    const m = parseInt($("#month").val());
+    const y = parseInt($("#year").val());
+
+    const resultBox = $("#result");
+    const error = highlightInvalidInputs(d, m, y);
+    if (error) return;
+
+    const inputDate = new Date(y, m - 1, d);
+    if (isNaN(inputDate.getTime())) {
+      resultBox.html("❌ आपके द्वारा दर्ज की गई तिथि कैलेंडर के अनुसार मान्य नहीं है। कृपया सही दिन, महीना और साल दर्ज करें।");
+      return;
+    }
+
+    const weekdayInMonth = utils.getWeekdayPositionInMonthHindi(inputDate);  // e.g. 2nd Thursday
+
+    const results = [
+      `✔️ 42 दिन पहले: ${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 42))}`,
+      `✔️ 270 दिन पहले (लगभग 9 माह): ${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 270))}`,
+      `✔️ 480 दिन पहले (लगभग 16 माह): ${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 480))}`,
+      `✔️ 5 वर्ष पहले: ${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 5))}`,
+      `✔️ 10 वर्ष पहले: ${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 10))}`,
+      `✔️ 16 वर्ष पहले: ${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 16))}`
+    ];
+
+    resultBox.html(`
+      <strong>टीकाकरण तिथि :</strong> ${utils.formatDateHindi(inputDate)}<br>
+      <strong>दिन :</strong> ${weekdayInMonth}<br><br>` +
+      results.join("<br>")
+    );
+  }
+
+</script>
+
+</body>
+</html>
