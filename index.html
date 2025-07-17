@@ -21,7 +21,7 @@
       font-weight: 400;
       display: flex;
       align-items: center;
-      padding-top: 10px;
+      padding-top: 0;
       background-color: #f5f5f5;
     }
 
@@ -216,6 +216,38 @@
       padding: 15px;
       border-radius: 6px;
     }
+
+    .result-section {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .result-item {
+      background: #f0f8ff;
+      border-left: 5px solid #007bff;
+      padding: 10px 12px;
+      border-radius: 5px;
+      font-size: 15px;
+      line-height: 1.5;
+      display: flex;
+      align-items: start;
+      gap: 8px;
+    }
+
+    .result-item span.icon {
+      color: #007bff;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 1;
+    }
+    .result-header {
+      font-size: 16px;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 8px;
+    }
+
   </style>
 </head>
 <body>
@@ -568,14 +600,27 @@
 
     const weekdayInMonth = utils.getWeekdayPositionInMonthHindi(inputDate);  // e.g. 2nd Thursday
 
-    const results = [
-      `✔️ 42 दिन पहले: ${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 42))}`,
-      `✔️ 270 दिन पहले (लगभग 9 माह): ${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 270))}`,
-      `✔️ 480 दिन पहले (लगभग 16 माह): ${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 480))}`,
-      `✔️ 5 वर्ष पहले: ${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 5))}`,
-      `✔️ 10 वर्ष पहले: ${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 10))}`,
-      `✔️ 16 वर्ष पहले: ${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 16))}`
-    ];
+    // const results = [
+    //   `✔️ 42 दिन पहले: ${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 42))}`,
+    //   `✔️ 270 दिन पहले (लगभग 9 माह): ${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 270))}`,
+    //   `✔️ 480 दिन पहले (लगभग 16 माह): ${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 480))}`,
+    //   `✔️ 5 वर्ष पहले: ${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 5))}`,
+    //   `✔️ 10 वर्ष पहले: ${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 10))}`,
+    //   `✔️ 16 वर्ष पहले: ${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 16))}`
+    // ];
+
+    resultBox.html(`
+      <div class="result-header">🗓 <strong>टीकाकरण तिथि :</strong> ${utils.formatDateHindi(inputDate)}</div>
+      <div class="result-header">📌 <strong>दिन :</strong> ${weekdayInMonth}</div>
+      <div class="result-section">
+        <div class="result-item"><span class="icon">🍼</span>42 दिन पहले: ${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 42))}</div>
+        <div class="result-item"><span class="icon">🥣</span>270 दिन पहले (लगभग 9 माह): ${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 270))}</div>
+        <div class="result-item"><span class="icon">🍛</span>480 दिन पहले (लगभग 16 माह): ${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 480))}</div>
+        <div class="result-item"><span class="icon">👦</span>5 वर्ष पहले: ${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 5))}</div>
+        <div class="result-item"><span class="icon">🙋</span>10 वर्ष पहले: ${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 10))}</div>
+        <div class="result-item"><span class="icon">🧖‍♀️</span>16 वर्ष पहले: ${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 16))}</div>
+      </div>
+    `);
 
     resultBox.html(`
       <strong>टीकाकरण तिथि :</strong> ${utils.formatDateHindi(inputDate)}<br>
