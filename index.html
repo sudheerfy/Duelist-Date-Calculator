@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Duelist Date Calculator</title>
-  <meta name="description" content="Useful tool to prepare duelist by calculating 42 days, 9 months, 16 months etc. from Ci-VHSND date to identify eligible children." />
-  <meta name="keywords" content="Duelist Date Calculator, Ci-VHSND, vaccination date calculator, child eligibility calculator, 42 days before, 9 months before, 16 months before, immunization tracking tool, टीकाकरण ड्यूलिस्ट, स्वास्थ्य कार्यकर्ता टूल, बच्चे की पात्रता, ड्यूलिस्ट बनाने का टूल, हिंदी टीकाकरण कैलकुलेटर, eligible child list, VHSND tool" />
-  <meta name="author" content="Sudheer Singh"/>
-  <meta name="publisher" content="Unicef GAVI"/>
+  <meta name="description"
+    content="Useful tool to prepare duelist by calculating 42 days, 9 months, 16 months and HPV Vaccination etc. from Ci-VHSND date to identify eligible children." />
+  <meta name="keywords"
+    content="HPV Vaccination,  Date Calculator, Ci-VHSND, vaccination date calculator, child eligibility calculator, 42 days before, 9 months before, 16 months before, immunization tracking tool, टीकाकरण ड्यूलिस्ट, स्वास्थ्य कार्यकर्ता टूल, बच्चे की पात्रता, ड्यूलिस्ट बनाने का टूल, हिंदी टीकाकरण कैलकुलेटर, eligible child list, VHSND tool" />
+  <meta name="author" content="Sudheer Singh" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
 
   <!-- jQuery + jQuery UI -->
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
@@ -24,7 +28,7 @@
       font-family: "Noto Sans", sans-serif;
       font-weight: 400;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       padding-top: 0;
       background-color: #f5f5f5;
     }
@@ -32,28 +36,31 @@
     .card {
       width: 100%;
       max-width: 420px;
-      padding: 15px;
+      padding: 8px 15px;
       margin: auto;
     }
 
     .card h2 {
       text-align: center;
-      margin-bottom: 8px;
+      margin-top: 6px;
+      margin-bottom: 4px;
     }
 
     .card p {
       text-align: center;
       font-family: "Noto Sans", sans-serif;
       font-size: 14px;
-      color: #666;
-      margin-bottom: 20px;
+      color: hsl(0, 0%, 40%);
+      margin-bottom: 8px;
+      margin-top: 0;
     }
 
     .label-text {
       font-size: 18px;
       font-weight: 600;
       color: #2c3e50;
-      margin-bottom: 10px;
+      margin-top: 20px;
+      margin-bottom: 6px;
       text-align: center;
       font-family: 'Noto Sans Devanagari', sans-serif;
     }
@@ -102,12 +109,29 @@
     }
 
     @keyframes shake {
-      0% { transform: translateX(0); }
-      20% { transform: translateX(-4px); }
-      40% { transform: translateX(4px); }
-      60% { transform: translateX(-4px); }
-      80% { transform: translateX(4px); }
-      100% { transform: translateX(0); }
+      0% {
+        transform: translateX(0);
+      }
+
+      20% {
+        transform: translateX(-4px);
+      }
+
+      40% {
+        transform: translateX(4px);
+      }
+
+      60% {
+        transform: translateX(-4px);
+      }
+
+      80% {
+        transform: translateX(4px);
+      }
+
+      100% {
+        transform: translateX(0);
+      }
     }
 
     .no-arrows::-webkit-inner-spin-button,
@@ -135,7 +159,7 @@
       align-self: center;
       height: 38px;
       width: 38px;
-      margin-top: 5px;
+      margin-top: 10px;
       background: none;
       border: none;
       display: flex;
@@ -149,19 +173,19 @@
       height: 20px;
     }
 
+    .action-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
     .today-link {
       color: #3366cc;
       cursor: pointer;
-      font-size: 16px;
-      margin: 15px 0;
-      display: inline-block;
-      text-align: center;  
-    }
-    
-    .button-group {
-      display: flex;
-      gap: 10px;
-      margin-top: 5px;
+      font-size: 15px;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     /* Calculate button zyada width le */
@@ -183,10 +207,10 @@
       background: #0056c7;
     }
 
-    /* Reset button kam width le aur icon ke saath align ho */
+    /* Reset button - red */
     .reset-btn {
       flex: 1;
-      background: #888;
+      background: #e53935;
       color: white;
       font-family: "Noto Sans", sans-serif;
       font-size: 18px;
@@ -201,7 +225,7 @@
     }
 
     .reset-btn:hover {
-      background: #666;
+      background: #c62828;
     }
 
     /* Icon style inside reset */
@@ -212,12 +236,12 @@
     }
 
     #result {
-      margin-top: 20px;
+      margin-top: 18px;
       font-size: 16px;
       line-height: 1.6;
       color: #333;
       background: #ffffff;
-      padding: 15px;
+      padding: 10px 15px;
       border-radius: 6px;
     }
 
@@ -255,381 +279,475 @@
     }
   </style>
 </head>
+
 <body>
 
-<div class="card">
-  <h2>📆 Duelist Date Calculator</h2>
-  <p>टीकाकरण (Ci-VHSND) तिथि के अनुसार योग्य बच्चों की सूची (ड्यूलिस्ट) तैयार करने हेतु उनकी तिथि की गणना एवं पहचान करना</p>
+  <div class="card">
+    <h2>Duelist Date Calculator</h2>
+    <p>टीकाकरण तिथि के अनुसार योग्य बच्चों की सूची (ड्यूलिस्ट) तैयार करना</p>
 
-  <div class="label-text">नीचे अपने टीकाकरण की तिथि दर्ज करें।</div> 
-  <div class="date-grid">
-    <div class="field">
-      <label for="day">दिन</label>
-      <input class="no-arrows" type="number" inputmode="numeric" id="day" min="1" max="31">
-      <div class="helper">DD</div>
+    <div class="label-text">नीचे अपने टीकाकरण की तिथि दर्ज करें।</div>
+    <div class="date-grid">
+      <div class="field">
+        <label for="day">दिन</label>
+        <input class="no-arrows" type="number" inputmode="numeric" id="day" min="1" max="31">
+        <div class="helper">DD</div>
+      </div>
+      <div class="field">
+        <label for="month">माह</label>
+        <input class="no-arrows" type="number" inputmode="numeric" id="month" min="1" max="12">
+        <div class="helper">MM</div>
+      </div>
+      <div class="field">
+        <label for="year">साल</label>
+        <input class="no-arrows" type="number" inputmode="numeric" id="year" min="1900" max="2100">
+        <div class="helper">YYYY</div>
+      </div>
+      <input type="text" id="datepicker" readonly>
+      <button id="calendarIcon" title="कैलेण्डर खोलें" aria-label="Open calendar">
+        <span class="icon">
+          <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+            viewBox="0 0 122.88 121">
+            <defs>
+              <style>
+                .cls-1 {
+                  fill: #ef4136;
+                }
+
+                .cls-1,
+                .cls-3,
+                .cls-4,
+                .cls-6 {
+                  fill-rule: evenodd;
+                }
+
+                .cls-2 {
+                  fill: gray;
+                }
+
+                .cls-3 {
+                  fill: #fff;
+                }
+
+                .cls-4 {
+                  fill: #c72b20;
+                }
+
+                .cls-5,
+                .cls-6 {
+                  fill: #1a1a1a;
+                }
+              </style>
+            </defs>
+            <title>Show Calendar</title>
+            <path class="cls-1"
+              d="M11.52,6.67h99.84a11.57,11.57,0,0,1,11.52,11.52V44.94H0V18.19A11.56,11.56,0,0,1,11.52,6.67Zm24.79,9.75A9.31,9.31,0,1,1,27,25.73a9.31,9.31,0,0,1,9.31-9.31Zm49.79,0a9.31,9.31,0,1,1-9.31,9.31,9.31,9.31,0,0,1,9.31-9.31Z" />
+            <path class="cls-2"
+              d="M111.36,121H11.52A11.57,11.57,0,0,1,0,109.48V40H122.88v69.46A11.56,11.56,0,0,1,111.36,121Z" />
+            <path class="cls-3"
+              d="M12.75,117.31h97.38a9.1,9.1,0,0,0,9.06-9.06V40H3.69v68.23a9.09,9.09,0,0,0,9.06,9.06Z" />
+            <path class="cls-4"
+              d="M86.1,14.63a11.11,11.11,0,1,1-7.85,3.26l.11-.1a11.06,11.06,0,0,1,7.74-3.16Zm0,1.79a9.31,9.31,0,1,1-9.31,9.31,9.31,9.31,0,0,1,9.31-9.31Z" />
+            <path class="cls-4"
+              d="M36.31,14.63a11.11,11.11,0,1,1-7.85,3.26l.11-.1a11.08,11.08,0,0,1,7.74-3.16Zm0,1.79A9.31,9.31,0,1,1,27,25.73a9.31,9.31,0,0,1,9.31-9.31Z" />
+            <path class="cls-5"
+              d="M80.54,4.56C80.54,2,83,0,86.1,0s5.56,2,5.56,4.56V25.77c0,2.51-2.48,4.56-5.56,4.56s-5.56-2-5.56-4.56V4.56Z" />
+            <path class="cls-5"
+              d="M30.75,4.56C30.75,2,33.24,0,36.31,0s5.56,2,5.56,4.56V25.77c0,2.51-2.48,4.56-5.56,4.56s-5.56-2-5.56-4.56V4.56Z" />
+            <path class="cls-6"
+              d="M22,85.62H36a1.79,1.79,0,0,1,1.79,1.79v11.7A1.8,1.8,0,0,1,36,100.9H22a1.8,1.8,0,0,1-1.8-1.79V87.41A1.8,1.8,0,0,1,22,85.62Z" />
+            <path class="cls-6"
+              d="M54.58,85.62H68.64a1.79,1.79,0,0,1,1.79,1.79v11.7a1.8,1.8,0,0,1-1.79,1.79H54.58a1.8,1.8,0,0,1-1.79-1.79V87.41a1.8,1.8,0,0,1,1.79-1.79Z" />
+            <path class="cls-6"
+              d="M86.87,85.62h14.06a1.8,1.8,0,0,1,1.79,1.79v11.7a1.8,1.8,0,0,1-1.79,1.79H86.87a1.8,1.8,0,0,1-1.79-1.79V87.41a1.79,1.79,0,0,1,1.79-1.79Z" />
+            <path class="cls-6"
+              d="M22,56.42H36a1.8,1.8,0,0,1,1.79,1.8V69.91A1.8,1.8,0,0,1,36,71.7H22a1.8,1.8,0,0,1-1.8-1.79V58.22a1.81,1.81,0,0,1,1.8-1.8Z" />
+            <path class="cls-6"
+              d="M54.58,56.42H68.64a1.8,1.8,0,0,1,1.79,1.8V69.91a1.8,1.8,0,0,1-1.79,1.79H54.58a1.79,1.79,0,0,1-1.79-1.79V58.22a1.8,1.8,0,0,1,1.79-1.8Z" />
+            <path class="cls-6"
+              d="M86.87,56.42h14.06a1.8,1.8,0,0,1,1.79,1.8V69.91a1.8,1.8,0,0,1-1.79,1.79H86.87a1.79,1.79,0,0,1-1.79-1.79V58.22a1.8,1.8,0,0,1,1.79-1.8Z" />
+          </svg>
+
+        </span>
+      </button>
     </div>
-    <div class="field">
-      <label for="month">माह</label>
-      <input class="no-arrows" type="number" inputmode="numeric" id="month" min="1" max="12">
-      <div class="helper">MM</div>
+
+    <div class="action-row">
+      <span class="today-link" onclick="setToday()">आज की तारीख़</span>
+      <button class="calculate-btn" onclick="calculateDates()">गणना करें</button>
+      <button class="generate-btn reset-btn" onclick="resetFields()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill"
+          viewBox="0 0 16 16">
+          <path
+            d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
+        </svg>
+        मिटाएँ
+      </button>
     </div>
-    <div class="field">
-      <label for="year">साल</label>
-      <input class="no-arrows" type="number" inputmode="numeric" id="year" min="1900" max="2100">
-      <div class="helper">YYYY</div>
-    </div>
-    <input type="text" id="datepicker" readonly>
-    <button id="calendarIcon" title="कैलेण्डर खोलें" aria-label="Open calendar">
-      <img src="https://jqueryui.com/resources/demos/datepicker/images/calendar.gif" alt="Calendar">
-    </button>
+
+    <div id="result" class="error-msg"></div>
   </div>
 
-  <span class="today-link" onclick="setToday()">आज की तारीख़</span>
-  <div class="button-group">
-    <button class="calculate-btn" onclick="calculateDates()">गणना करें</button>
-    <button class="generate-btn reset-btn" onclick="resetFields()">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
-      </svg>
-      मिटाएँ
-    </button>
-  </div>
-
-  <div id="result" class="error-msg"></div>
-</div>
-
-<script>
-  let fieldErrors = {
-    day: "",
-    month: "",
-    year: ""
-  };
-
-  $(document).ready(function () {
-    $("#day").focus(); // Focus on page load
-
-    // Auto-trim and move focus
-    $("#day, #month, #year").on("input", function () {
-      let val = $(this).val();
-      let id = $(this).attr("id");
-
-      $(this).removeClass("error");
-      $("#result").text("");
-
-      if ((id === "day" || id === "month") && val.length > 2) {
-        $(this).val(val.slice(0, 2));
-      }
-      if (id === "year" && val.length > 4) {
-        $(this).val(val.slice(0, 4));
-      }
-    });
-
-    $("#day").on("input", function () {
-      if ($(this).val().length === 2) {
-        $("#month").focus();
-      }
-    });
-
-    $("#month").on("input", function () {
-      if ($(this).val().length === 2) {
-        $("#year").focus();
-      }
-    });
-
-    // 🔁 Reverse focus: If field is empty and backspace is pressed
-    $("#month, #year").on("keydown", function (e) {
-      if (e.key === "Backspace" && $(this).val().length === 0) {
-        if (this.id === "year") {
-          $("#month").focus();
-        } else if (this.id === "month") {
-          $("#day").focus();
-        }
-      }
-    });
-
-    $("#day, #month, #year").on("input", function () {
-      const id = $(this).attr("id");
-      const val = parseInt($(this).val());
-
-      if (id === "day" && val >= 1 && val <= 31) {
-        fieldErrors.day = "";
-      }
-      if (id === "month" && val >= 1 && val <= 12) {
-        fieldErrors.month = "";
-      }
-      if (id === "year" && val >= 1900 && val <= 2100) {
-        fieldErrors.year = "";
-      }
-
-      showErrors(); // ✅ Update result box
-    });
-
-    // Hindi config (manual)
-    $.datepicker.regional['hi'] = {
-      closeText: "बंद",
-      prevText: "पिछला",
-      nextText: "अगला",
-      currentText: "आज",
-      monthNames: ["जनवरी","फ़रवरी","मार्च","अप्रैल","मई","जून",
-      "जुलाई","अगस्त","सितम्बर","अक्टूबर","नवम्बर","दिसम्बर"],
-      monthNamesShort: ["जन", "फर", "मार्च", "अप्रै", "मई", "जून",
-      "जुल", "अग", "सित", "अक्ट", "नव", "दि"],
-      dayNames: ["रविवार","सोमवार","मंगलवार","बुधवार","गुरुवार","शुक्रवार","शनिवार"],
-      dayNamesShort: ["रवि", "सोम", "मंगल", "बुध", "गुरु", "शुक्र", "शनि"],
-      dayNamesMin: ["र","सो","मं","बु","गु","शु","श"],
-      weekHeader: "हफ्ता",
-      dateFormat: "dd/mm/yy",
-      firstDay: 1,
-      isRTL: false,
-      showMonthAfterYear: false,
-      yearSuffix: ""
+  <script>
+    let fieldErrors = {
+      day: "",
+      month: "",
+      year: ""
     };
-    $.datepicker.setDefaults($.datepicker.regional["hi"]);
 
-    $(function () {
-      $("#datepicker").datepicker({
+    $(document).ready(function () {
+      $("#day").focus(); // Focus on page load
+
+      // Auto-trim and move focus
+      $("#day, #month, #year").on("input", function () {
+        let val = $(this).val();
+        let id = $(this).attr("id");
+
+        $(this).removeClass("error");
+        $("#result").text("");
+
+        if ((id === "day" || id === "month") && val.length > 2) {
+          $(this).val(val.slice(0, 2));
+        }
+        if (id === "year" && val.length > 4) {
+          $(this).val(val.slice(0, 4));
+        }
+      });
+
+      $("#day").on("input", function () {
+        if ($(this).val().length === 2) {
+          $("#month").focus();
+        }
+      });
+
+      $("#month").on("input", function () {
+        if ($(this).val().length === 2) {
+          $("#year").focus();
+        }
+      });
+
+      // 🔁 Reverse focus: If field is empty and backspace is pressed
+      $("#month, #year").on("keydown", function (e) {
+        if (e.key === "Backspace" && $(this).val().length === 0) {
+          if (this.id === "year") {
+            $("#month").focus();
+          } else if (this.id === "month") {
+            $("#day").focus();
+          }
+        }
+      });
+
+      $("#day, #month, #year").on("input", function () {
+        const id = $(this).attr("id");
+        const val = parseInt($(this).val());
+
+        if (id === "day" && val >= 1 && val <= 31) {
+          fieldErrors.day = "";
+        }
+        if (id === "month" && val >= 1 && val <= 12) {
+          fieldErrors.month = "";
+        }
+        if (id === "year" && val >= 1900 && val <= 2100) {
+          fieldErrors.year = "";
+        }
+
+        showErrors(); // ✅ Update result box
+      });
+
+      // Hindi config (manual)
+      $.datepicker.regional['hi'] = {
+        closeText: "बंद",
+        prevText: "पिछला",
+        nextText: "अगला",
+        currentText: "आज",
+        monthNames: ["जनवरी", "फ़रवरी", "मार्च", "अप्रैल", "मई", "जून",
+          "जुलाई", "अगस्त", "सितम्बर", "अक्टूबर", "नवम्बर", "दिसम्बर"],
+        monthNamesShort: ["जन", "फर", "मार्च", "अप्रै", "मई", "जून",
+          "जुल", "अग", "सित", "अक्ट", "नव", "दि"],
+        dayNames: ["रविवार", "सोमवार", "मंगलवार", "बुधवार", "गुरुवार", "शुक्रवार", "शनिवार"],
+        dayNamesShort: ["रवि", "सोम", "मंगल", "बुध", "गुरु", "शुक्र", "शनि"],
+        dayNamesMin: ["र", "सो", "मं", "बु", "गु", "शु", "श"],
+        weekHeader: "हफ्ता",
         dateFormat: "dd/mm/yy",
-        onSelect: function (dateText) {
-          const [day, month, year] = dateText.split('/');
-          $("#day").val(day.padStart(2, '0'));
-          $("#month").val(month.padStart(2, '0'));
-          $("#year").val(year);
-          $("#result").html("");
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: ""
+      };
+      $.datepicker.setDefaults($.datepicker.regional["hi"]);
+
+      $(function () {
+        $("#datepicker").datepicker({
+          dateFormat: "dd/mm/yy",
+          onSelect: function (dateText) {
+            const [day, month, year] = dateText.split('/');
+            $("#day").val(day.padStart(2, '0'));
+            $("#month").val(month.padStart(2, '0'));
+            $("#year").val(year);
+            $("#result").html("");
+          }
+        });
+      });
+
+      $("#calendarIcon").on("click", function () {
+        $("#datepicker").datepicker("show");
+      });
+
+      // Sync inputs with datepicker
+      $("#day, #month, #year").on("change", function () {
+        let d = parseInt($("#day").val());
+        let m = parseInt($("#month").val());
+        let y = parseInt($("#year").val());
+
+        if (!isNaN(d) && !isNaN(m) && !isNaN(y)) {
+          const error = highlightInvalidInputs(d, m, y);
+          if (!error) {
+            const date = new Date(y, m - 1, d);
+            const formatted = $.datepicker.formatDate("dd/mm/yy", date);
+            $("#datepicker").datepicker("setDate", formatted);
+          }
+        }
+      });
+
+      $("#day, #month").on("change", function () {
+        let val = $(this).val();
+        if (val !== "") {
+          val = parseInt(val).toString().padStart(2, '0');
+          $(this).val(val);
+        }
+      });
+
+      // ✅ Trigger calculation on Enter key
+      $("#day, #month, #year").on("keydown", function (e) {
+        if (e.key === "Enter" || e.keyCode === 13) {
+          e.preventDefault();
+          $(".calculate-btn").click();
+        }
+      });
+
+      // ✅ Limit Tab key focus only to #day, #month, #year
+      const focusableFields = ["#day", "#month", "#year"];
+
+      $(document).on("keydown", function (e) {
+        if (e.key === "Tab") {
+          const current = document.activeElement.id;
+          const currentIndex = focusableFields.indexOf("#" + current);
+
+          if (currentIndex !== -1) {
+            e.preventDefault(); // Stop normal Tab behavior
+            const nextIndex = e.shiftKey
+              ? (currentIndex - 1 + focusableFields.length) % focusableFields.length
+              : (currentIndex + 1) % focusableFields.length;
+            $(focusableFields[nextIndex]).focus();
+          }
         }
       });
     });
 
-    $("#calendarIcon").on("click", function () {
-      $("#datepicker").datepicker("show");
-    });
-
-    // Sync inputs with datepicker
-    $("#day, #month, #year").on("change", function () {
-      let d = parseInt($("#day").val());
-      let m = parseInt($("#month").val());
-      let y = parseInt($("#year").val());
-
-      if (!isNaN(d) && !isNaN(m) && !isNaN(y)) {
-        const error = highlightInvalidInputs(d, m, y);
-        if (!error) {
-          const date = new Date(y, m - 1, d);
-          const formatted = $.datepicker.formatDate("dd/mm/yy", date);
-          $("#datepicker").datepicker("setDate", formatted);
-        }
+    function showErrors() {
+      const messages = Object.values(fieldErrors).filter(msg => msg !== "");
+      if (messages.length > 0) {
+        $("#result").html(messages.map(msg => `<div>• ${msg}</div>`).join(""));
+      } else {
+        $("#result").html("");
       }
-    });
+    }
 
-    $("#day, #month").on("change", function () {
-      let val = $(this).val();
-      if (val !== "") {
-        val = parseInt(val).toString().padStart(2, '0');
-        $(this).val(val);
+    function highlightInvalidInputs(day, month, year) {
+      fieldErrors = { day: "", month: "", year: "" }; // reset errors
+      let firstInvalidField = null;
+
+      ["#day", "#month", "#year"].forEach(id => $(id).removeClass("error"));
+
+      if (isNaN(day) || day < 1 || day > 31) {
+        triggerShake("#day");
+        if (!firstInvalidField) firstInvalidField = "#day";
+        fieldErrors.day = "<b>दिन (Day) ➤ 1 से 31</b> के बीच होना चाहिए।";
       }
-    });
 
-    // ✅ Trigger calculation on Enter key
-    $("#day, #month, #year").on("keydown", function (e) {
-      if (e.key === "Enter" || e.keyCode === 13) {
-        e.preventDefault();
-        $(".calculate-btn").click();
+      if (isNaN(month) || month < 1 || month > 12) {
+        triggerShake("#month");
+        if (!firstInvalidField) firstInvalidField = "#month";
+        fieldErrors.month = "<b>महीना (Month) ➤ 1 से 12</b> के बीच होना चाहिए।";
       }
-    });
 
-    // ✅ Limit Tab key focus only to #day, #month, #year
-    const focusableFields = ["#day", "#month", "#year"];
-
-    $(document).on("keydown", function (e) {
-      if (e.key === "Tab") {
-        const current = document.activeElement.id;
-        const currentIndex = focusableFields.indexOf("#" + current);
-
-        if (currentIndex !== -1) {
-          e.preventDefault(); // Stop normal Tab behavior
-          const nextIndex = e.shiftKey
-            ? (currentIndex - 1 + focusableFields.length) % focusableFields.length
-            : (currentIndex + 1) % focusableFields.length;
-          $(focusableFields[nextIndex]).focus();
-        }
+      if (isNaN(year) || year < 1900 || year > 2100) {
+        triggerShake("#year");
+        if (!firstInvalidField) firstInvalidField = "#year";
+        fieldErrors.year = "<b>साल (Year) ➤ 1900 से 2100</b> के बीच होना चाहिए।";
       }
-    });
-  });
 
-  function showErrors() {
-    const messages = Object.values(fieldErrors).filter(msg => msg !== "");
-    if (messages.length > 0) {
-      $("#result").html(messages.map(msg => `<div>• ${msg}</div>`).join(""));
-    } else {
+      const date = new Date(year, month - 1, day);
+      const valid = date.getFullYear() === year &&
+        date.getMonth() === month - 1 &&
+        date.getDate() === day;
+
+      if (!Object.values(fieldErrors).some(e => e) && !valid) {
+        triggerShake("#day");
+        triggerShake("#month");
+        triggerShake("#year");
+        if (!firstInvalidField) firstInvalidField = "#day";
+        fieldErrors.day = "आपके द्वारा दर्ज की गई तिथि कैलेंडर के अनुसार मान्य नहीं है। कृपया सही दिन, महीना और साल दर्ज करें।";
+      }
+
+      showErrors();
+
+      if (firstInvalidField) {
+        $(firstInvalidField).focus();  // ✅ Set focus to first invalid field
+        return "Error";
+      }
+      return null;
+    }
+
+    function triggerShake(selector) {
+      const el = $(selector);
+      el.removeClass("error");
+      void el[0].offsetWidth;
+      el.addClass("error");
+    }
+
+    function setToday() {
+      const today = new Date();
+      $("#day").val(today.getDate().toString().padStart(2, '0'));
+      $("#month").val((today.getMonth() + 1).toString().padStart(2, '0'));
+      $("#year").val(today.getFullYear());
+      const formatted = $.datepicker.formatDate("dd/mm/yy", today);
+      $("#datepicker").datepicker("setDate", formatted);
       $("#result").html("");
     }
-  }
 
-  function highlightInvalidInputs(day, month, year) {
-    fieldErrors = { day: "", month: "", year: "" }; // reset errors
-    let firstInvalidField = null;
-
-    ["#day", "#month", "#year"].forEach(id => $(id).removeClass("error"));
-
-    if (isNaN(day) || day < 1 || day > 31) {
-      triggerShake("#day");
-      if (!firstInvalidField) firstInvalidField = "#day";
-      fieldErrors.day = "<b>दिन (Day) ➤ 1 से 31</b> के बीच होना चाहिए।";
+    function resetFields() {
+      $("#day, #month, #year").val("");
+      $("#result").html("");
+      $("#day, #month, #year").removeClass("error");
+      $("#datepicker").datepicker("setDate", null);
+      fieldErrors = { day: "", month: "", year: "" };
+      $("#day").focus();
     }
 
-    if (isNaN(month) || month < 1 || month > 12) {
-      triggerShake("#month");
-      if (!firstInvalidField) firstInvalidField = "#month";
-      fieldErrors.month = "<b>महीना (Month) ➤ 1 से 12</b> के बीच होना चाहिए।";
-    }
+    const hindiMonths = ["जनवरी", "फरवरी", "मार्च", "अप्रैल", "मई", "जून", "जुलाई", "अगस्त", "सितंबर", "अक्टूबर", "नवंबर", "दिसंबर"];
+    const weekdaysHindi = ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'];
+    const ordinalsHindi = ['पहला', 'दूसरा', 'तीसरा', 'चौथा', 'पाँचवाँ', 'छठा'];
 
-    if (isNaN(year) || year < 1900 || year > 2100) {
-      triggerShake("#year");
-      if (!firstInvalidField) firstInvalidField = "#year";
-      fieldErrors.year = "<b>साल (Year) ➤ 1900 से 2100</b> के बीच होना चाहिए।";
-    }
+    const utils = {
+      subtractDaysFromDate(date, days) {
+        const newDate = new Date(date);
+        newDate.setDate(newDate.getDate() - days);
+        newDate.setDate(newDate.getDate() - 1);  // 🔼 यहाँ -1
+        return newDate;
+      },
 
-    const date = new Date(year, month - 1, day);
-    const valid = date.getFullYear() === year &&
-                  date.getMonth() === month - 1 &&
-                  date.getDate() === day;
+      addOrSubtractMonthsFromDate(date, months) {
+        const newDate = new Date(date);
+        newDate.setMonth(newDate.getMonth() - months);
+        newDate.setDate(newDate.getDate() - 1);   // 🔼 महीने घटाने के बाद -1 दिन
+        return newDate;
+      },
 
-    if (!Object.values(fieldErrors).some(e => e) && !valid) {
-      triggerShake("#day");
-      triggerShake("#month");
-      triggerShake("#year");
-      if (!firstInvalidField) firstInvalidField = "#day";
-      fieldErrors.day = "आपके द्वारा दर्ज की गई तिथि कैलेंडर के अनुसार मान्य नहीं है। कृपया सही दिन, महीना और साल दर्ज करें।";
-    }
+      subtractYearsFromDate(date, years) {
+        const newDate = new Date(date);
+        newDate.setFullYear(newDate.getFullYear() - years);
+        newDate.setDate(newDate.getDate() - 1);   // 🔼 साल घटाने के बाद -1 दिन
+        return newDate;
+      },
 
-    showErrors();
+      formatDateEnglish(date) {
+        return date.toLocaleDateString('en-IN', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        });
+      },
 
-    if (firstInvalidField) {
-      $(firstInvalidField).focus();  // ✅ Set focus to first invalid field
-      return "Error";
-    }
-    return null;
-  }
+      formatDateHindi(date) {
+        const day = date.getDate();
+        const month = hindiMonths[date.getMonth()];
+        const year = date.getFullYear();
+        return `${day} ${month} ${year}`;
+      },
 
-  function triggerShake(selector) {
-    const el = $(selector);
-    el.removeClass("error");
-    void el[0].offsetWidth;
-    el.addClass("error");
-  }
+      getWeekdayPositionInMonthHindi(date) {
+        const targetDay = date.getDay();
+        const year = date.getFullYear();
+        const month = date.getMonth();
 
-  function setToday() {
-    const today = new Date();
-    $("#day").val(today.getDate().toString().padStart(2, '0'));
-    $("#month").val((today.getMonth() + 1).toString().padStart(2, '0'));
-    $("#year").val(today.getFullYear());
-    const formatted = $.datepicker.formatDate("dd/mm/yy", today);
-    $("#datepicker").datepicker("setDate", formatted);
-    $("#result").html("");
-  }
+        let count = 0;
 
-  function resetFields() {
-    $("#day, #month, #year").val("");
-    $("#result").html("");
-    $("#day, #month, #year").removeClass("error");
-    $("#datepicker").datepicker("setDate", null);
-    fieldErrors = { day: "", month: "", year: "" };
-    $("#day").focus();
-  }
-
-  const hindiMonths = ["जनवरी", "फरवरी", "मार्च", "अप्रैल", "मई", "जून", "जुलाई", "अगस्त", "सितंबर", "अक्टूबर", "नवंबर", "दिसंबर"];
-  const weekdaysHindi = ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'];
-  const ordinalsHindi = ['पहला', 'दूसरा', 'तीसरा', 'चौथा', 'पाँचवाँ', 'छठा'];
-
-  const utils = {
-    subtractDaysFromDate(date, days) {
-      const newDate = new Date(date);
-      newDate.setDate(newDate.getDate() - days);
-      newDate.setDate(newDate.getDate() - 1);  // 🔼 यहाँ -1
-      return newDate;
-    },
-
-    addOrSubtractMonthsFromDate(date, months) {
-      const newDate = new Date(date);
-      newDate.setMonth(newDate.getMonth() - months);
-      newDate.setDate(newDate.getDate() - 1);   // 🔼 महीने घटाने के बाद -1 दिन
-      return newDate;
-    },
-
-    subtractYearsFromDate(date, years) {
-      const newDate = new Date(date);
-      newDate.setFullYear(newDate.getFullYear() - years);
-      newDate.setDate(newDate.getDate() - 1);   // 🔼 साल घटाने के बाद -1 दिन
-      return newDate;
-    },
-
-    formatDateEnglish(date) {
-      return date.toLocaleDateString('en-IN', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
-      });
-    },
-
-    formatDateHindi(date) {
-      const day = date.getDate();
-      const month = hindiMonths[date.getMonth()];
-      const year = date.getFullYear();
-      return `${day} ${month} ${year}`;
-    },
-
-    getWeekdayPositionInMonthHindi(date) {
-      const targetDay = date.getDay();
-      const year = date.getFullYear();
-      const month = date.getMonth();
-
-      let count = 0;
-
-      for (let day = 1; day <= date.getDate(); day++) {
-        const current = new Date(year, month, day);
-        if (current.getDay() === targetDay) {
-          count++;
+        for (let day = 1; day <= date.getDate(); day++) {
+          const current = new Date(year, month, day);
+          if (current.getDay() === targetDay) {
+            count++;
+          }
         }
+
+        const ordinal = ordinalsHindi[count - 1] || `${count}वाँ`;
+        const weekday = weekdaysHindi[targetDay];
+
+        return `महीने का ${ordinal} ${weekday}`;
+      }
+    };
+
+    function calculateDates() {
+      const d = parseInt($("#day").val());
+      const m = parseInt($("#month").val());
+      const y = parseInt($("#year").val());
+
+      const resultBox = $("#result");
+      const error = highlightInvalidInputs(d, m, y);
+      if (error) return;
+
+      const inputDate = new Date(y, m - 1, d);
+      if (isNaN(inputDate.getTime())) {
+        resultBox.html("❌ आपके द्वारा दर्ज की गई तिथि कैलेंडर के अनुसार मान्य नहीं है। कृपया सही दिन, महीना और साल दर्ज करें।");
+        return;
       }
 
-      const ordinal = ordinalsHindi[count - 1] || `${count}वाँ`;
-      const weekday = weekdaysHindi[targetDay];
+      const weekdayInMonth = utils.getWeekdayPositionInMonthHindi(inputDate);  // e.g. 2nd Thursday
 
-      return `महीने का ${ordinal} ${weekday}`;
-    }
-  };
+      // HPV: age > 14 AND age <= 15
+      // FROM = inputDate - 15 years        → 15vi birthday (eligible, include karo)
+      // TO   = inputDate - 14 years - 1day → 14vi birthday se 1 din pehle (eligible, 14th birthday EXCLUDE)
+      const hpvFrom = new Date(y - 15, m - 1, d);   // 15vi birthday = eligible
+      const hpvTo = new Date(y - 14, m - 1, d);
+      hpvTo.setDate(hpvTo.getDate() - 1);            // 14vi birthday se 1 din pehle
 
-  function calculateDates() {
-    const d = parseInt($("#day").val());
-    const m = parseInt($("#month").val());
-    const y = parseInt($("#year").val());
 
-    const resultBox = $("#result");
-    const error = highlightInvalidInputs(d, m, y);
-    if (error) return;
-
-    const inputDate = new Date(y, m - 1, d);
-    if (isNaN(inputDate.getTime())) {
-      resultBox.html("❌ आपके द्वारा दर्ज की गई तिथि कैलेंडर के अनुसार मान्य नहीं है। कृपया सही दिन, महीना और साल दर्ज करें।");
-      return;
-    }
-
-    const weekdayInMonth = utils.getWeekdayPositionInMonthHindi(inputDate);  // e.g. 2nd Thursday
-
-    resultBox.html(`
+      resultBox.html(`
       <div class="result-header"><strong>🗓 टीकाकरण तिथि:</strong> ${utils.formatDateHindi(inputDate)}</div>
       <div class="result-header"><strong>📌 दिन:</strong> ${weekdayInMonth}</div>
       <table class="result-table">
         <tbody>
-          <tr><td><span class="icon">🍼</span> 6 सप्ताह पहले (42 दिन)</td><td>${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 42))}</td></tr>
-          <tr><td><span class="icon">🥣</span> 9 माह पहले</td><td>${utils.formatDateHindi(utils.addOrSubtractMonthsFromDate(inputDate, 9))}</td></tr>
-          <tr><td><span class="icon">🍛</span> 16 माह पहले</td><td>${utils.formatDateHindi(utils.addOrSubtractMonthsFromDate(inputDate, 16))}</td></tr>
-          <tr><td><span class="icon">👦</span> 5 वर्ष पहले</td><td>${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 5))}</td></tr>
-          <tr><td><span class="icon">🙋</span> 10 वर्ष पहले</td><td>${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 10))}</td></tr>
-          <tr><td><span class="icon">🧖‍♀️</span> 16 वर्ष पहले</td><td>${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 16))}</td></tr>
+          <tr><td>🍼 6 सप्ताह पहले (42 दिन)</td><td>${utils.formatDateHindi(utils.subtractDaysFromDate(inputDate, 42))}</td></tr>
+          <tr><td>🥣 9 माह पहले</td><td>${utils.formatDateHindi(utils.addOrSubtractMonthsFromDate(inputDate, 9))}</td></tr>
+          <tr><td>🍛 16 माह पहले</td><td>${utils.formatDateHindi(utils.addOrSubtractMonthsFromDate(inputDate, 16))}</td></tr>
+          <tr><td>👦 5 वर्ष पहले</td><td>${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 5))}</td></tr>
+          <tr><td>🙋 10 वर्ष पहले</td><td>${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 10))}</td></tr>
+          <tr><td>🧖‍♀️ 16 वर्ष पहले</td><td>${utils.formatDateHindi(utils.subtractYearsFromDate(inputDate, 16))}</td></tr>
+          <tr style="background:#fff8e1; border-top:2px solid #f0a500;">
+            <td colspan="2" style="padding:6px 10px;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <div style="flex:1;">
+                  <div style="font-weight:700; font-size:13.5px; color:#7a4f00;">HPV टीकाकरण हेतु योग्य जन्म तिथि सीमा 💉</div>
+                  <div style="font-size:11px; color:#888; margin-top:1px;">(14 साल पूरे हों, 15 साल पूरे न हुए हों)</div>
+                </div>
+                <div style="display:flex; gap:6px; margin-left:auto; flex-shrink:0;">
+                  <div style="text-align:center; background:#fffde7; border:1px solid #f0c040; border-radius:6px; padding:3px 8px;">
+                    <div style="font-size:10px; color:#888; font-weight:600; letter-spacing:0.3px;">FROM</div>
+                    <div style="font-size:12.5px; font-weight:700; color:#b35c00; white-space:nowrap;">${utils.formatDateHindi(hpvFrom)}</div>
+                  </div>
+                  <div style="text-align:center; background:#fffde7; border:1px solid #f0c040; border-radius:6px; padding:3px 8px;">
+                    <div style="font-size:10px; color:#888; font-weight:600; letter-spacing:0.3px;">TO</div>
+                    <div style="font-size:12.5px; font-weight:700; color:#b35c00; white-space:nowrap;">${utils.formatDateHindi(hpvTo)}</div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
         </tbody>
       </table>
     `);
     }
   </script>
 </body>
-</html>
 
+</html>
